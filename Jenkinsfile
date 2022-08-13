@@ -30,9 +30,9 @@ pipeline
                 steps{
                     script{
                         echo "Pushing the image to docker hub"
-                        withCredentials([usernamePassword(credentialsId:'docker-hub-repo', passwordVariable:'password', usernameVariable:'username')])
+                        withCredentials([usernamePassword(credentialsId:'docker-hub-repo', passwordVariable:'password', usernameVariable:'username')]){
                         sh 'echo $password | docker login -u $username --password-stdin'
-                        sh 'docker push hdevop/myrepo:firstjavaapp-2.0'
+                        sh 'docker push hdevop/myrepo:firstjavaapp-2.0'}
                     }
                 }
             }
