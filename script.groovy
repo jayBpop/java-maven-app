@@ -1,17 +1,23 @@
 def buildJar() {
-    echo "building the application..."
+    echo "Building the application"
+    sh 'mvn clean'
     sh 'mvn package'
 } 
 
 def buildImage() {
-    echo "building the docker image..."
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t nanajanashia/demo-app:jma-2.0 .'
-        sh "echo $PASS | docker login -u $USER --password-stdin"
-        sh 'docker push nanajanashia/demo-app:jma-2.0'
+    echo "Building Docker Image"
+    sh 'docker build -t hdevop/myrepo:firstjavaapp-2.1 .'
     }
-} 
 
+def pushImage(){
+    echo "Pushing the image to docker hub"
+    withCredentials([usernamePassword(credentialsId:'docker-hub-repo', passwordVariable:'password', usernameVariable:'username')])
+            {
+                  sh 'echo $password | docker login -u $username --password-stdin'
+                  sh 'docker push hdevop/myrepo:firstjavaapp-2.0'
+            }
+
+}
 def deployApp() {
     echo 'deploying the application...'
 } 

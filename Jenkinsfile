@@ -1,3 +1,4 @@
+def gv
 pipeline
 {
     agent any
@@ -7,12 +8,18 @@ pipeline
               jdk 'jdk8'
         }
         stages{
+              stage("Init"){
+                 steps{
+                     script{
+                        gv = load "script.groovy"
+                     }
+                 }
+              }
+
             stage("Maven packaging and creating jar"){
                 steps{
                     script{
-                        echo "Building the application"
-                        sh 'mvn clean'
-                        sh 'mvn package'
+                       gv.buildJar()
                     }
 
                 }
@@ -21,25 +28,21 @@ pipeline
             stage("Building Docker Image"){
                 steps{
                     script{
-                        echo "Building Docker Image"
-                        sh 'docker build -t hdevop/myrepo:firstjavaapp-2.0 .'
+                            gv.buildImage()
                     }
                 }
             }
             stage("Pushing the image to Docker hub"){
                 steps{
                     script{
-                        echo "Pushing the image to docker hub"
-                        withCredentials([usernamePassword(credentialsId:'docker-hub-repo', passwordVariable:'password', usernameVariable:'username')]){
-                        sh 'echo $password | docker login -u $username --password-stdin'
-                        sh 'docker push hdevop/myrepo:firstjavaapp-2.0'}
+                            gv.pushImage()
                     }
                 }
             }
             stage("Deploying to the server") {
                 steps{
                     script{
-                        echo "Deployed the application to the server"
+                       gv.deployApp()
                     }
                 }
             }
