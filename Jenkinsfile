@@ -1,3 +1,6 @@
+#!/usr/bin/env groovy
+@Library ('jenkins-shared-library')
+
 def gv
 pipeline
 {
@@ -19,7 +22,7 @@ pipeline
             stage("Maven packaging and creating jar"){
                 steps{
                     script{
-                       gv.buildJar()
+                       buildJar()
                     }
 
                 }
@@ -28,14 +31,14 @@ pipeline
             stage("Building Docker Image"){
                 steps{
                     script{
-                            gv.buildImage()
+                            buildDockerImage()
                     }
                 }
             }
             stage("Pushing the image to Docker hub"){
                 steps{
                     script{
-                            gv.pushImage()
+                            pushDockerImage()
                     }
                 }
             }
