@@ -31,14 +31,14 @@ pipeline
             stage("Building Docker Image"){
                 steps{
                     script{
-                            buildDockerImage()
+                            buildDockerImage(hdevop/myrepo:jsl_java_app-2.0)
                     }
                 }
             }
             stage("Pushing the image to Docker hub"){
                 steps{
                     script{
-                            pushDockerImage()
+                            pushDockerImage(hdevop/myrepo:jsl_java_app-2.0)
                     }
                 }
             }
