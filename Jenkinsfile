@@ -17,6 +17,14 @@ pipeline
                      }
                  }
               }
+            stage("App versioning as per automatic job build"){
+                steps{
+                    script{
+                        gv.appVersion()
+                    }
+                }
+
+            }
 
             stage("Maven packaging and creating jar"){
                 steps{
@@ -45,6 +53,13 @@ pipeline
                 steps{
                     script{
                        gv.deployApp()
+                    }
+                }
+            }
+            stage("Commit version update from jenkins to app !...."){
+                steps{
+                    script{
+                        gv.versionCommit()
                     }
                 }
             }
