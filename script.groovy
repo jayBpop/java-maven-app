@@ -45,7 +45,7 @@ def versionCommit() {
                         sh 'git commit -m "ci: version bump"'
                         sh 'git push origin HEAD:main'
                     }
-
+    echo " Strategy to remove continuous build loop added in jenkins!!!!...."
 
 }
 return this
