@@ -21,7 +21,7 @@ pipeline
             stage("Maven packaging and creating jar"){
                 steps{
                     script{
-                       buildJar()
+                       gv.buildJar()
                     }
 
                 }
@@ -30,14 +30,14 @@ pipeline
             stage("Building Docker Image"){
                 steps{
                     script{
-                            buildDockerImage()
+                            gv.buildDockerImage()
                     }
                 }
             }
             stage("Pushing the image to Docker hub"){
                 steps{
                     script{
-                            pushDockerImage()
+                            gv.pushDockerImage()
                     }
                 }
             }
