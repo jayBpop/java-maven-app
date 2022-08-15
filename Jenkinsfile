@@ -30,14 +30,14 @@ pipeline
             stage("Building Docker Image"){
                 steps{
                     script{
-                            gv.buildDockerImage()
+                            gv.buildImage()
                     }
                 }
             }
             stage("Pushing the image to Docker hub"){
                 steps{
                     script{
-                            gv.pushDockerImage()
+                            gv.pushImage()
                     }
                 }
             }
