@@ -20,6 +20,7 @@ def pushImage(){
 }
 def deployApp() {
     echo "deploying the application to the server successfully...!!!"
+    echo "testing webhook!!!!!"
 } 
 
 return this
