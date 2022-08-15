@@ -37,8 +37,8 @@ def versionCommit() {
     echo "Commit updated version to repo...."
     withCredentials([usernamePassword(credentialsId: 'git-hub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         // git config here for the first time run
-                        sh 'git config --global user.email "captainsparrow560@gmail.com"'
-                        sh 'git config --global user.name "jayBpop"'
+                        sh 'git config --global user.email "jenkins-ci@example.com"'
+                        sh 'git config --global user.name "jenkins-ci"'
 
                         sh "git remote set-url origin https://${USER}:${PASS}@github.com/jayBpop/java-maven-app.git"
                         sh 'git add .'
