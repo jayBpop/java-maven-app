@@ -31,7 +31,11 @@ def pushImage(){
 }
 def deployApp() {
     echo "deploying the application to the ec2-server...."
-    sh 'ssh ec2-user@13.235.135.129'
+    sshagent(['ssh-id']) {
+    
+    sh 'ssh -o StrictHostKeyChecking=no ec2-user@13.235.135.129'
+}
+    
 } 
 def versionCommit() {
     echo "Commit updated version to repo...."
