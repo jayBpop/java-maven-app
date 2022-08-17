@@ -30,15 +30,15 @@ def pushImage(){
 
 }
 def deployApp() {
-    echo "deploying the application to the server successfully...!!!"
-    echo "testing webhook!!!!!"
+    echo "deploying the application to the ec2-server...."
+    sh 'ssh ec2-user@13.235.135.129'
 } 
 def versionCommit() {
     echo "Commit updated version to repo...."
     withCredentials([usernamePassword(credentialsId: 'git-hub-id', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         // git config here for the first time run
-                        sh 'git config --global user.email "jenkins-ci@example.com"'
-                        sh 'git config --global user.name "jenkins-ci"'
+                        // sh 'git config --global user.email "jenkins-ci@example.com"'
+                        // sh 'git config --global user.name "jenkins-ci"'
 
                         sh "git remote set-url origin https://${USER}:${PASS}@github.com/jayBpop/java-maven-app.git"
                         sh 'git add .'
