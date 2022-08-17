@@ -33,7 +33,7 @@ def deployApp() {
     echo "deploying the application to the ec2-server...."
     sshagent(['ssh-id']) {
     
-    sh 'ssh -o StrictHostKeyChecking=no ec2-user@ec2-13-235-135-129.ap-south-1.compute.amazonaws.com'
+    sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.207.108.45'
 }
     
 } 
