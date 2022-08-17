@@ -34,6 +34,7 @@ def deployApp() {
     sshagent(['ssh-id']) {
     
     sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.207.108.45'
+    sh "docker run -p 8080:8080 -d ${IMAGE_NAME}"
 }
     
 } 
