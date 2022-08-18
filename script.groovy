@@ -34,11 +34,11 @@ def deployApp() {
     sshagent(['ssh-id']) {
     
     sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.206.166.115'
-    
-    sh ' docker login --username: hdevop --password: adminadmin'
+    sh 'scp /dhubpassword.txt ec2-user@15.206.166.115: /dhubpassword.txt'
+    sh ' cat ~/dhubpassword.txt | docker login --password-stdin --u:hdevop '
     sh " docker run -d -p 8080:8080 ${IMAGE_NAME}"
     
-    
+   
 }
     
 } 
