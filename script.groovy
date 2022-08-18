@@ -35,8 +35,8 @@ def deployApp() {
     
     sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.206.166.115'
     
-    sh 'sudo docker login --username: hdevop --password: adminadmin'
-    sh "sudo docker run -d -p 8080:8080 ${IMAGE_NAME}"
+    sh ' docker login --username: hdevop --password: adminadmin'
+    sh " docker run -d -p 8080:8080 ${IMAGE_NAME}"
     
     
 }
