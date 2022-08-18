@@ -33,10 +33,10 @@ def deployApp() {
     echo "deploying the application to the ec2-server...."
     sshagent(['ssh-id']) {
     
-    sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.207.108.45'
+    sh 'ssh -o StrictHostKeyChecking=no ec2-user@15.206.166.115'
     
-    sh 'docker login -username: hdevop -password: adminadmin'
-    sh "docker run -d -p 8080:8080 ${IMAGE_NAME}"
+    sh 'sudo docker login --username: hdevop --password-stdin'
+    sh "sudo docker run -d -p 8080:8080 ${IMAGE_NAME}"
     
     
 }
