@@ -31,7 +31,7 @@ def pushImage(){
 }
 def deployApp() {
     echo "deploying the application to the ec2-server...."
-    def dockercmd= " docker run -d -p 8080:8080 ${IMAGE_NAME}"
+    def dockercmd= " docker pull ${IMAGE_NAME}"
     sshagent(['ssh-id']) {
     
         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.166.115 ${dockercmd}"
