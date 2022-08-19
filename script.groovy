@@ -34,7 +34,7 @@ def deployApp() {
     def dockercmd= " docker pull ${IMAGE_NAME}"
     sshagent(['ssh-id']) {
     
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.166.115 ${dockercmd}"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.117.44 ${dockercmd}"
     // sh 'scp -o StrictHostKeyChecking=no dhubpassword.txt ec2-user@15.206.166.115:/home/ec2-user'
     // sh ' cat ~/dhubpassword.txt | docker login --username:hdevop --password-stdin '
     //   sh 'cat ~/dhubpassword.txt | sudo -S docker login --username:hdevop --password-stdin'
