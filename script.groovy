@@ -31,10 +31,10 @@ def pushImage(){
 }
 def deployApp() {
     echo "deploying the application to the ec2-server...."
-    def dockercmd= " docker pull ${IMAGE_NAME}"
+    def dockercmd= " docker run -p 8080:8080 -d ${IMAGE_NAME}"
     sshagent(['ssh-id']) {
     
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.234.117.44 ${dockercmd}"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.140.77 ${dockercmd}"
     // sh 'scp -o StrictHostKeyChecking=no dhubpassword.txt ec2-user@15.206.166.115:/home/ec2-user'
     // sh ' cat ~/dhubpassword.txt | docker login --username:hdevop --password-stdin '
     //   sh 'cat ~/dhubpassword.txt | sudo -S docker login --username:hdevop --password-stdin'
