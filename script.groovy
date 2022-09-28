@@ -30,20 +30,19 @@ def pushImage(){
 
 }
 def deployApp() {
+    sleep( time: 90, unit:"SECONDS")
     echo "deploying the application to the ec2-server...."
-    def dockercmd= " docker run -p 8080:8080 -d ${IMAGE_NAME}"
-    sshagent(['ssh-id']) {
-    
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.233.140.77 ${dockercmd}"
-    // sh 'scp -o StrictHostKeyChecking=no dhubpassword.txt ec2-user@15.206.166.115:/home/ec2-user'
-    // sh ' cat ~/dhubpassword.txt | docker login --username:hdevop --password-stdin '
-    //   sh 'cat ~/dhubpassword.txt | sudo -S docker login --username:hdevop --password-stdin'
-    //    sh "sudo docker pull ${IMAGE_NAME}"
-   
-    
+    def shellCmd = bash "./server-cmds.sh ${IMAGE_NAME}"
+    def ec2_Instance = "ec2-user@${EC2_PUBLIC_IP}"
+
+    sshagent(['server-ssh-key']) {
+                       sh "scp -o StrictHostKeyChecking=no server-cmds.sh ${ec2Instance}:/home/ec2-user"
+                       sh "scp -o StrictHostKeyChecking=no docker-compose.yaml ${ec2Instance}:/home/ec2-user"
+                       sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${shellCmd}"
+
    
 }
-    
+
 } 
 def versionCommit() {
     echo "Commit updated version to repo...."
