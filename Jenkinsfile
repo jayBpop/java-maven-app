@@ -49,6 +49,20 @@ pipeline
                     }
                 }
             }
+            stage("Provision server"){
+                environment{
+                    AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+                    AWS_SECRET_KEY_ID= credentials('jenkins_aws_secret_key_id')
+                    TF_VAR_env_prefix ='test'
+                } 
+                steps{
+                    script{
+                        dir('terraform')
+                        sh 'terraform init'
+                        sh 'terraform apply --auto-approve'
+                    }
+                }
+            }
             stage("Deploying to the server") {
                 steps{
                     script{
