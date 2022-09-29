@@ -12,7 +12,7 @@ def appVersion() {
 def buildJar() {
     echo "Building the application"
     sh 'mvn clean'
-    sh 'mvn install'
+    sh 'mvn package'
 } 
 
 def buildImage() {
