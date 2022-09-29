@@ -17,7 +17,7 @@ def buildJar() {
 
 def buildImage() {
     echo "Building Docker Image"
-    sh "sudo docker build -t hdevop/myrepo:${IMAGE_NAME} ."
+    sh "docker build -t hdevop/myrepo:${IMAGE_NAME} ."
     }
 
 def pushImage(){
