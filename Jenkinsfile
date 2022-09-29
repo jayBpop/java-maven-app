@@ -57,7 +57,7 @@ pipeline
                 } 
                 steps{
                     script{
-                        dir('terraform')
+                        dir('terraform'){
                         sh 'terraform init'
                         sh 'terraform apply --auto-approve'
                         
@@ -65,6 +65,7 @@ pipeline
                             script: "terraform output app-server-ip",
                             returnStdout: true)
                             .trim()
+                        }
                             
                     }
                 }
